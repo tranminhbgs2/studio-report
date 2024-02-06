@@ -19,6 +19,7 @@ class ExportController extends Controller
         $firestore = App::make('firebase.firestore');
         $employeesCollection = $firestore->collection('employees');
         $employees = $employeesCollection->where('status', '=', 'ACTIVATED')->documents();
+
         $listOfFiles = []; // Khởi tạo mảng để lưu trữ đường dẫn file
         $dateTime = new DateTime();
         $dateTime->setTimezone(new DateTimeZone('Asia/Bangkok'));
@@ -42,9 +43,9 @@ class ExportController extends Controller
         }
 
         // Gửi email với danh sách các file
-        Mail::to('trantuyen3721@gmail.com')->send(new ReportMail($listOfFiles));
+        Mail::to('tranvanminh30398@gmail.com')->send(new ReportMail($listOfFiles));
 
         // Trả về phản hồi tùy chỉnh hoặc tải xuống file cuối cùng (tùy vào yêu cầu của bạn)
-        return response()->json(['message' => 'Exported successfully', 'files' => $listOfFiles]);
+        return response()->json(['message' => 'Exported successfullys',]);
     }
 }

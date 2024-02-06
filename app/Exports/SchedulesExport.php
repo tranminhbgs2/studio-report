@@ -10,12 +10,9 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithMapping;
-use NumberFormatter;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use PhpOffice\PhpSpreadsheet\Style\Border;
@@ -47,6 +44,11 @@ class SchedulesExport implements FromCollection, WithHeadings, WithStyles, WithC
         // Thêm điều kiện lọc dữ liệu theo tháng (ví dụ, 'shootingDate' nằm trong khoảng tháng hiện tại)
         // Lưu ý: Điều này cần được thay đổi tùy theo cấu trúc dữ liệu và yêu cầu cụ thể của bạn
         $field = $this->checkTypeEmployee($this->type);
+
+        // if ($this->employeeId == "TbvJ01zjKxPdrQ8Fqxkc") {
+        //     print_r($field);
+        //     die;
+        // }
         $documents = $collectionReference->where('shootingDate', '>=', $currentMonthStart)
             ->where('shootingDate', '<=', $currentMonthEnd)
             ->where($field, '=', $this->employeeId)
@@ -80,6 +82,11 @@ class SchedulesExport implements FromCollection, WithHeadings, WithStyles, WithC
                     'Lương' => $salary,
                 ]);
             }
+        }
+        if ($this->employeeId == "TbvJ01zjKxPdrQ8Fqxkc") {
+            echo "<pre>";
+            print_r($data);
+            die;
         }
         return $data;
     }
