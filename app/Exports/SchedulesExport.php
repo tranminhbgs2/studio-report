@@ -83,11 +83,11 @@ class SchedulesExport implements FromCollection, WithHeadings, WithStyles, WithC
                 ]);
             }
         }
-        if ($this->employeeId == "TbvJ01zjKxPdrQ8Fqxkc") {
-            echo "<pre>";
-            print_r($data);
-            die;
-        }
+        // if ($this->employeeId == "TbvJ01zjKxPdrQ8Fqxkc") {
+        //     echo "<pre>";
+        //     print_r($data);
+        //     die;
+        // }
         return $data;
     }
 
